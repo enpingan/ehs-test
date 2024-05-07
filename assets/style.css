@@ -734,6 +734,10 @@ video {
   gap: 20px;
 }
 
+.gap-40 {
+  gap: 40px;
+}
+
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -772,6 +776,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#FAFBFB\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 251 251 / var(--tw-bg-opacity));
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -779,6 +788,10 @@ video {
 
 .p-20 {
   padding: 20px;
+}
+
+.p-40 {
+  padding: 40px;
 }
 
 .px-24 {
@@ -819,6 +832,10 @@ video {
 
 .text-36 {
   font-size: 36px;
+}
+
+.text-16 {
+  font-size: 16px;
 }
 
 .font-500 {
@@ -899,8 +916,16 @@ video {
     margin-right: auto;
   }
 
+  .desktop\:block {
+    display: block;
+  }
+
   .desktop\:flex {
     display: flex;
+  }
+
+  .desktop\:inline-flex {
+    display: inline-flex;
   }
 
   .desktop\:h-\[50px\] {
@@ -955,6 +980,14 @@ video {
     max-width: 588px;
   }
 
+  .desktop\:max-w-\[190px\] {
+    max-width: 190px;
+  }
+
+  .desktop\:flex-row {
+    flex-direction: row;
+  }
+
   .desktop\:flex-col {
     flex-direction: column;
   }
@@ -973,6 +1006,14 @@ video {
 
   .desktop\:justify-center {
     justify-content: center;
+  }
+
+  .desktop\:justify-between {
+    justify-content: space-between;
+  }
+
+  .desktop\:justify-around {
+    justify-content: space-around;
   }
 
   .desktop\:gap-40 {

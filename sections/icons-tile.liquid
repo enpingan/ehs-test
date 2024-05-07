@@ -1,0 +1,54 @@
+<div class="icons-tile bg-[#FAFBFB] flex flex-col p-40 items-center gap-40 desktop:flex-row desktop:justify-around">
+  {% if section.blocks.size > 0 %}
+    {% for block in section.blocks %}
+      {%- liquid
+        assign icon_svg = block.settings.icon_svg
+        assign icon_text = block.settings.icon_text
+      -%}
+
+      {% if icon_svg != blank and icon_text != blank %}
+        <div class="icons-tile__item flex flex-col gap-20 items-center">
+          <div class="icons-tile__svg">
+            {{ icon_svg }}
+          </div>
+          <p class="icons-tile__text text-16 font-700 text-center desktop:max-w-[190px] desktop:mx-auto">
+            {{ icon_text }}
+          </p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Icons Tile",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Icon",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon svg"
+        },
+        {
+          "type": "text",
+          "id": "icon_text",
+          "label": "Icon text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icons Tile"
+    }
+  ]
+}
+{% endschema %}
