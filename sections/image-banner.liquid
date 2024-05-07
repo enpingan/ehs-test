@@ -5,7 +5,6 @@
   assign mobile_image = section.settings.mobile_image
   assign desktop_content_alignment = section.settings.desktop_content_alignment
   assign section_padding_top = section.settings.section_padding_top
-  assign color_scheme = section.settings.color_scheme
   assign section_padding_bottom = section.settings.section_padding_bottom
   assign desktop_content_position = section.settings.desktop_content_position
   assign surtitle = section.settings.surtitle
@@ -14,8 +13,7 @@
 -%}
 
 <div
-  id="Hero-{{ section.id }}"
-  class="hero__content-{{ desktop_content_alignment }} color-{{ color_scheme }} w-full relative desktop:min-h-[650px] desktop:h-[80vh]"
+  class="hero__content-{{ desktop_content_alignment }} w-full relative desktop:min-h-[650px] desktop:h-[80vh]"
   style="padding-top: {{ section_padding_top }}px; padding-bottom: {{ section_padding_bottom }}px;"
 >
   {%- if image != blank -%}
@@ -90,12 +88,6 @@
       "id": "subtitle",
       "label": "Subtitle",
       "info": "Appears below headline"
-    },
-
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme"
     },
     {
       "type": "select",

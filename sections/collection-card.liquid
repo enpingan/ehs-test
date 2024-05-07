@@ -1,0 +1,120 @@
+{{ 'collection-card.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-card flex flex-col gap-40 desktop:flex-row desktop:p-40 font-roboto desktop:justify-center desktop:mx-auto">
+  {% for block in section.blocks %}
+    <div class="collection-card__item desktop:relative">
+      {%- liquid
+        assign image = block.settings.image
+        assign card_title = block.settings.card_title
+        assign card_subtitle = block.settings.card_subtitle
+      -%}
+
+      <div class="collection-card__image">
+        {%- render 'lazy-image', image: image -%}
+      </div>
+
+      <div class="collection-card__content text-center p-20 flex flex-col gap-20 desktop:absolute desktop:bottom-0 desktop:mx-20 desktop:bg-white desktop:p-40">
+        <h2 class="text-[20px] font-500 desktop:text-28">{{ card_title }}</h2>
+        <p class="text-14 desktop:text-16">{{ card_subtitle }}</p>
+
+        <div class="collection-card__ctas flex justify-center items-center">
+          {% for i in (1..4) %}
+            {%- liquid
+              assign _cta_label = 'cta_' | append: forloop.index | append: '_label'
+              assign _cta_link = 'cta_' | append: forloop.index | append: '_link'
+              assign cta_label = block.settings[_cta_label]
+              assign cta_link = block.settings[_cta_link]
+            -%}
+
+            {% if cta_label != blank and cta_link %}
+              <a
+                href="{{ cta_link }}"
+                class="text-14 font-700 underline {% if forloop.index > 1 %}border-l{% endif %} {% if forloop.index == 2 %}border-r{% endif %}"
+              >
+                {{- cta_label -}}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Collection Card",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection-card",
+      "name": "Collection Card",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card Title"
+        },
+        {
+          "type": "text",
+          "id": "card_subtitle",
+          "label": "Card Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "cta_1_label",
+          "label": "CTA Label"
+        },
+        {
+          "type": "url",
+          "id": "cta_1_link",
+          "label": "CTA Link"
+        },
+        {
+          "type": "text",
+          "id": "cta_2_label",
+          "label": "CTA Label"
+        },
+        {
+          "type": "url",
+          "id": "cta_2_link",
+          "label": "CTA Link"
+        },
+        {
+          "type": "text",
+          "id": "cta_3_label",
+          "label": "CTA Label"
+        },
+        {
+          "type": "url",
+          "id": "cta_3_link",
+          "label": "CTA Link"
+        },
+        {
+          "type": "text",
+          "id": "cta_4_label",
+          "label": "CTA Label"
+        },
+        {
+          "type": "url",
+          "id": "cta_4_link",
+          "label": "CTA Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Card"
+    }
+  ]
+}
+{% endschema %}
