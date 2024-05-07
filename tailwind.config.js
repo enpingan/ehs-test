@@ -23,7 +23,6 @@ module.exports = {
         true: "#000000",
         DEFAULT: "#141414",
       },
-      yellow: "#FFE673",
     },
     fontWeight: {
       300: 300,
