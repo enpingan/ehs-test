@@ -1,0 +1,112 @@
+{%- liquid
+  assign image_position = section.settings.image_position
+  assign image = section.settings.image
+  assign title = section.settings.title
+  assign subtitle = section.settings.subtitle
+  assign color_scheme = section.settings.color_scheme
+  assign title = section.settings.title
+-%}
+
+<div class="image-with-text-card color-{{ color_scheme }} {{ image_position }} font-roboto h-[80vh] py-40 w-full relative flex flex-nowrap desktop:h-[50vh]">
+  <div class="image-with-text-card__media media{% if image == blank %} placeholder{% endif %} h-[225px] w-full desktop:h-full desktop:w-2/3 desktop:object-cover">
+    {%- if image != blank -%}
+      {%- render 'lazy-image', image: image %}
+    {%- endif -%}
+  </div>
+
+  <div
+    class="image-with-text-card__whitespace height-[225px] w-full desktop:h-full desktop:w-1/3 desktop:flex desktop:flex-col desktop:justify-start desktop:items-center desktop:bg-white text-center"
+  ></div>
+
+  <div class="text-content__wrapper absolute {{ image_position }} absolute flex items-center h-auto w-[90%] left-0 bottom-0 desktop:w-1/2 desktop:h-full desktop:top-0">
+    <div class="text-card desktop:relative bg-white desktop:w-full desktop:p-40 desktop:bottom-24">
+      <div class="content {{ image_position }} gap-20 p-20 desktop:gap-40 desktop:p-40 border border-[2px] border-[#ececec] flex flex-col justify-center">
+        <h2 class="text-28 font-700 desktop:text-[42px]">{{ title }}</h2>
+        <p class="text-14 desktop:text-16">{{ subtitle }}</p>
+        <div class="button">
+          {% for block in section.blocks %}
+            <a
+              href="{{ block.settings.btn_link }}"
+              class="button bg-black text-white min-w-[150px] px-20 rounded-lg block text-center text-12 desktop:text-14 h-[50px] leading-[50px]"
+            >
+              {{ block.settings.btn_label }}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="button"></div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image / Text Card",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        {
+          "value": "image-left",
+          "label": "Image on the left"
+        },
+        {
+          "value": "image-right",
+          "label": "Image on the right"
+        }
+      ],
+      "default": "image-left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "info": "Appears below headline"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "btn_label",
+          "default": "Button",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image / Text Card"
+    }
+  ]
+}
+{% endschema %}
