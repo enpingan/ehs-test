@@ -1,0 +1,35 @@
+.image-with-text-card.image-left {
+  flex-direction: column;
+}
+
+.image-with-text-card.image-right {
+  flex-direction: column;
+}
+
+.content.image-right {
+  align-items: flex-start;
+}
+
+.content.image-left {
+  align-items: flex-end;
+}
+
+@media screen and (min-width: 750px) {
+  .image-with-text-card.image-left {
+    flex-direction: row;
+  }
+  
+  .image-with-text-card.image-right {
+    flex-direction: row-reverse;
+  }
+  
+  .text-content__wrapper.image-left {
+    right: 3rem;
+    left: unset;
+  }
+  
+  .text-content__wrapper.image-right {
+    left: 3rem;
+    right: unset;
+  }
+}

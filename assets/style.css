@@ -682,6 +682,10 @@ video {
   height: 80vh;
 }
 
+.h-\[50vh\] {
+  height: 50vh;
+}
+
 .w-\[calc\(100vw-32px\)\] {
   width: calc(100vw - 32px);
 }
@@ -963,12 +967,20 @@ video {
     justify-content: flex-start;
   }
 
+  .desktop\:justify-end {
+    justify-content: flex-end;
+  }
+
   .desktop\:justify-center {
     justify-content: center;
   }
 
   .desktop\:gap-40 {
     gap: 40px;
+  }
+
+  .desktop\:gap-30 {
+    gap: 30px;
   }
 
   .desktop\:border-0 {
